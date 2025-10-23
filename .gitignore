@@ -1,1 +1,6 @@
 /.gradle/
+/run/
+/build/generated/
+/build/classes/
+/build/resources/
+/build/tmp/

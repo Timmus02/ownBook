@@ -1,0 +1,11 @@
+name: ownBOOK
+version: '1.0-SNAPSHOT'
+main: Timmus02.ownBOOK.OwnBOOK
+api-version: '1.21'
+
+commands:
+  ownBook:
+    description: "Lets you create Individual Books"
+    usage: "/ownBook"
+    aliases: [ownBook]
+    permission: ownBook.command
