@@ -36,12 +36,12 @@ public class updateBook {
         }
         if(foundBook) {
             for(int i = 0; i <indexes.size(); i++) {
-                updateBook(_player, indexes.get(i));
+                updateBook(_player, indexes.get(i),_bookTitle);
             }
         }
     }
-    private void updateBook(Player _player, int _index) {
-        BookMeta newMeta = OwnBOOK.getInstance().getCreateBook().getBookMeta();
+    private void updateBook(Player _player, int _index, String _title) {
+        BookMeta newMeta = OwnBOOK.getInstance().getCreateBook().getBookMeta(_title);
         _player.getInventory().getItem(_index).setItemMeta(newMeta);
     }
 }
