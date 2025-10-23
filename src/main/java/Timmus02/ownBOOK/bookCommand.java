@@ -28,11 +28,11 @@ public class bookCommand implements CommandExecutor, TabCompleter {
         if(args.length == 1) {
             if(args[0].equalsIgnoreCase("create")){
                 player.sendMessage("Started Creation of Book");
-                createBook newBook = new createBook(player);
+                OwnBOOK.getInstance().getCreateBook().createBookForPlayer(player);
                 return true;
             }
             if(args[0].equalsIgnoreCase("update")) {
-                updateBook updateBook = new updateBook(player, "Admin", "Random Book");
+                OwnBOOK.getInstance().getUpdateBook().updateBookPlayer(player, "Admin", "Random Book");
                 return true;
             }
         }
