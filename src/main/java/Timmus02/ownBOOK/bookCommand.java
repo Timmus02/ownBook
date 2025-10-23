@@ -25,17 +25,14 @@ public class bookCommand implements CommandExecutor, TabCompleter {
         if(args.length >3){
             return false;
         }
-        if(args.length == 1) {
-            if(args[0].equalsIgnoreCase("update")) {
-                OwnBOOK.getInstance().getUpdateBook().updateBookPlayer(player, "Admin", "Random Book");
-                return true;
-            }
-            //Bukkit.getLogger().info(args.length + "")
-        }
         if(args.length == 2) {
             if(args[0].equalsIgnoreCase("create")){
                 player.sendMessage("Started Creation of Book");
                 OwnBOOK.getInstance().getCreateBook().createBookForPlayer(player, args[1]);
+                return true;
+            }
+            if(args[0].equalsIgnoreCase("update")) {
+                OwnBOOK.getInstance().getUpdateBook().updateBookPlayer(player, args[1]);
                 return true;
             }
         }
@@ -56,16 +53,18 @@ public class bookCommand implements CommandExecutor, TabCompleter {
     public List<String> onTabComplete(CommandSender sender, Command command, String label, String[] args) {
         if (args.length == 1)
             return Arrays.asList("update", "saveBookInHand", "create");
-        if (args.length == 2)  {
-            File file = new File("plugins/ownBOOK/books.yml");
-            YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
-            ArrayList<String> bookNames = new ArrayList<>();
-            for (String key : config.getConfigurationSection("books").getKeys(false)) {
-                String path = "books." + key;
-                bookNames.add(config.getString(path + ".title"));
+        if (args.length == 2) {
+            if (args[0].equalsIgnoreCase("update") || args[0].equalsIgnoreCase("create")) {
+                File file = new File("plugins/ownBOOK/books.yml");
+                YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
+                ArrayList<String> bookNames = new ArrayList<>();
+                for (String key : config.getConfigurationSection("books").getKeys(false)) {
+                    String path = "books." + key;
+                    bookNames.add(config.getString(path + ".title"));
+                }
+                //Bukkit.getLogger().info(config.getString("books."));
+                return bookNames;
             }
-            //Bukkit.getLogger().info(config.getString("books."));
-            return bookNames;
         }
         return Arrays.asList();
     }

@@ -11,7 +11,7 @@ import java.awt.print.Book;
 import java.util.ArrayList;
 
 public class updateBook {
-    public void updateBookPlayer(Player _player, String _bookAuthor, String _bookTitle) {
+    public void updateBookPlayer(Player _player, String _bookTitle) {
         PlayerInventory inventory = _player.getInventory();
         boolean foundBook = false;
         ArrayList<Integer> indexes = new ArrayList<Integer>();
@@ -20,12 +20,11 @@ public class updateBook {
             if(item != null) {
                 if(item.getType() == Material.WRITTEN_BOOK) {
                     BookMeta meta = (BookMeta) item.getItemMeta();
-                    if(meta.getAuthor().equals(_bookAuthor)) {
-                        if(meta.getTitle().equals(_bookTitle)) {
-                            _player.sendMessage("Found BOOK");
-                            indexes.add(i);
-                            foundBook = true;
-                        }
+
+                    if(meta.getTitle().equals(_bookTitle)) {
+                        _player.sendMessage("Found BOOK");
+                        indexes.add(i);
+                        foundBook = true;
                     }
                 }
             }

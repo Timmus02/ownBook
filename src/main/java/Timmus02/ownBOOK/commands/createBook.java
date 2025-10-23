@@ -49,9 +49,6 @@ public class createBook {
             ItemStack bookInHand = _player.getInventory().getItemInMainHand();
             if (bookInHand.getType() == Material.WRITABLE_BOOK) {
                 BookMeta meta = (BookMeta) bookInHand.getItemMeta();
-                /*meta.setAuthor(_author);
-                meta.setTitle(_title);
-                bookInHand.setItemMeta(meta);*/
                 File file = new File("plugins/ownBOOK/books.yml");
                 YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
 
