@@ -35,6 +35,10 @@ public class bookCommand implements CommandExecutor, TabCompleter {
                 OwnBOOK.getInstance().getUpdateBook().updateBookPlayer(player, args[1]);
                 return true;
             }
+            if(args[0].equalsIgnoreCase("getWritableBook")) {
+                OwnBOOK.getInstance().getCreateBook().getWritableBook(player, args[1]);
+                return true;
+            }
         }
         if(args.length == 3) {
             if (args[0].equalsIgnoreCase("saveBookInHand")) {
@@ -52,18 +56,21 @@ public class bookCommand implements CommandExecutor, TabCompleter {
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String label, String[] args) {
         if (args.length == 1)
-            return Arrays.asList("update", "saveBookInHand", "create");
+            return Arrays.asList("update", "saveBookInHand", "create", "getWritableBook");
         if (args.length == 2) {
-            if (args[0].equalsIgnoreCase("update") || args[0].equalsIgnoreCase("create")) {
+            if (args[0].equalsIgnoreCase("update") || args[0].equalsIgnoreCase("create") || args[0].equalsIgnoreCase("getWritableBook")) {
                 File file = new File("plugins/ownBOOK/books.yml");
-                YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
-                ArrayList<String> bookNames = new ArrayList<>();
-                for (String key : config.getConfigurationSection("books").getKeys(false)) {
-                    String path = "books." + key;
-                    bookNames.add(config.getString(path + ".title"));
+                if(file.length() > 0) {
+                    YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
+                    ArrayList<String> bookNames = new ArrayList<>();
+                    for (String key : config.getConfigurationSection("books").getKeys(false)) {
+                        String path = "books." + key;
+                        bookNames.add(config.getString(path + ".title"));
+                    }
+                    //Bukkit.getLogger().info(config.getString("books."));
+                    return bookNames;
                 }
-                //Bukkit.getLogger().info(config.getString("books."));
-                return bookNames;
+                else { return null; }
             }
         }
         return Arrays.asList();

@@ -6,10 +6,14 @@ api-version: '1.21'
 commands:
   ownBook:
     description: "Lets you create Individual Books"
-    usage: "/ownBook <create/update/saveBookInHand>"
+    usage: "/ownBook <create/update/saveBookInHand/getWritableBook>"
     aliases: [ownBook]
     permission: ownBook.command
   ownBook saveBookInHand:
     description: "<Author> <Titel>"
     usage: "/ownBook saveBookInHand <Author> <Titel>"
     permission: ownBook.saveBookInHand
+  ownBook getWritableBook:
+    description: "<title>"
+    usage: "/ownBook getWritableBook <title>"
+    permission: ownBook.getWritableBook

@@ -1,5 +1,6 @@
 package Timmus02.ownBOOK.commands;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -22,27 +23,38 @@ public class createBook {
         else  {_player.sendMessage(ChatColor.RED + "book not found");}
 
     }
+    public void getWritableBook(Player _player, String _titel) {
+        ItemStack book = new ItemStack(Material.WRITABLE_BOOK);
+        if (getBookMeta(_titel) != null) {
+            WritableBookMeta meta = (WritableBookMeta) book.getItemMeta();
+            meta.setPages(getBookMeta(_titel).getPages());
+            book.setItemMeta(meta);
+            _player.getInventory().addItem(book);
+        }
+        else  {_player.sendMessage(ChatColor.RED + "book not found");}
+    }
     public BookMeta getBookMeta(String _titel){
         File file = new File("plugins/ownBOOK/books.yml");
         YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
-        Object Obook = config.get("books." + _titel.replace(" ", "_"));
-        if (Obook != null) {
-            String path = "books." +  _titel.replace(" ", "_");
-            String title = config.getString(path + ".title");
-            String author = config.getString(path + ".author");
-            List<String> pages = config.getStringList(path + ".pages");
+        if (file.length() > 0) {
+            Object Obook = config.get("books." + _titel.replace(" ", "_"));
+            if (Obook != null) {
+                String path = "books." + _titel.replace(" ", "_");
+                String title = config.getString(path + ".title");
+                String author = config.getString(path + ".author");
+                List<String> pages = config.getStringList(path + ".pages");
 
-            ItemStack  book = new ItemStack(Material.WRITTEN_BOOK);
-            BookMeta meta = (BookMeta) book.getItemMeta();
-            meta.setAuthor(author);
-            meta.setTitle(title);
-            meta.setPages(pages);
-            return meta;
+                ItemStack book = new ItemStack(Material.WRITTEN_BOOK);
+                BookMeta meta = (BookMeta) book.getItemMeta();
+                meta.setAuthor(author);
+                meta.setTitle(title);
+                meta.setPages(pages);
+                return meta;
+            } else {
+                return null;
+            }
         }
-        else {
-            return null;
-        }
-
+        return null;
     }
     public void saveBookInHand(Player _player, String _author, String _title) throws IOException {
         if (_player.getInventory().getItemInMainHand() instanceof ItemStack) {
@@ -50,6 +62,7 @@ public class createBook {
             if (bookInHand.getType() == Material.WRITABLE_BOOK) {
                 BookMeta meta = (BookMeta) bookInHand.getItemMeta();
                 File file = new File("plugins/ownBOOK/books.yml");
+
                 YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
 
                 String path = "books." + _title.replace(" ", "_");
@@ -67,7 +80,5 @@ public class createBook {
         else {
             _player.sendMessage(ChatColor.RED + "You are not holding an item in your Hand!");
         }
-
-
     }
 }

@@ -7,7 +7,6 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.meta.BookMeta;
 
-import java.awt.print.Book;
 import java.util.ArrayList;
 
 public class updateBook {
