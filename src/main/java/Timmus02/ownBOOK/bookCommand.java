@@ -73,6 +73,13 @@ public class bookCommand implements CommandExecutor, TabCompleter {
                 else { return null; }
             }
         }
+        if (args.length == 3) {
+            if(args[0].equalsIgnoreCase("create")) {
+                List<Player> list = (List<Player>) Bukkit.getOnlinePlayers();
+                Bukkit.getLogger().info(list +"");
+
+            }
+        }
         return Arrays.asList();
     }
 }

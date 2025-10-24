@@ -1,5 +1,5 @@
 name: ownBOOK
-version: '1.0-SNAPSHOT'
+version: '1.0'
 main: Timmus02.ownBOOK.OwnBOOK
 api-version: '1.21'
 
