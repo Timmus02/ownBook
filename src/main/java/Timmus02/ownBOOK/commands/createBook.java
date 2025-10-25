@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class createBook {
-    public void createBookForPlayer(Player _player, String _titel, String _playerName) {
+    public void createBookForPlayer(Player _player, String _titel, String _playerName) { //Handles the create Command
         if(_playerName != null) {
             _player = Bukkit.getPlayer(_playerName);
         }
@@ -27,7 +27,7 @@ public class createBook {
         else  {_player.sendMessage(ChatColor.RED + "book not found");}
 
     }
-    public void getWritableBook(Player _player, String _titel) {
+    public void getWritableBook(Player _player, String _titel) { //Handles the getWritableBookCommand
         ItemStack book = new ItemStack(Material.WRITABLE_BOOK);
         if (getBookMeta(_titel) != null) {
             WritableBookMeta meta = (WritableBookMeta) book.getItemMeta();
@@ -37,7 +37,7 @@ public class createBook {
         }
         else  {_player.sendMessage(ChatColor.RED + "book not found");}
     }
-    public BookMeta getBookMeta(String _titel){
+    public BookMeta getBookMeta(String _titel){ //gives Back a BookMeta of a book from the yml file
         File file = new File("plugins/ownBOOK/books.yml");
         YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
         if (file.length() > 0) {
@@ -60,7 +60,7 @@ public class createBook {
         }
         return null;
     }
-    public void saveBookInHand(Player _player, String _author, String _title) throws IOException {
+    public void saveBookInHand(Player _player, String _author, String _title) throws IOException { //handels saving of book to yml file
         if (_player.getInventory().getItemInMainHand() instanceof ItemStack) {
             ItemStack bookInHand = _player.getInventory().getItemInMainHand();
             if (bookInHand.getType() == Material.WRITABLE_BOOK) {

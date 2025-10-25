@@ -11,7 +11,7 @@ import org.bukkit.inventory.meta.BookMeta;
 import java.util.ArrayList;
 
 public class updateBook {
-    public void updateBookPlayer(Player _player, String _bookTitle, String _playerName) {
+    public void updateBookPlayer(Player _player, String _bookTitle, String _playerName) { //handles the updating of a players book
         if (_playerName != null) {
             _player =  Bukkit.getPlayer(_playerName);
         }
@@ -42,7 +42,7 @@ public class updateBook {
             }
         }
     }
-    private void updateBook(Player _player, int _index, String _title) {
+    private void updateBook(Player _player, int _index, String _title) { //makes the update
         BookMeta newMeta = OwnBOOK.getInstance().getCreateBook().getBookMeta(_title);
         _player.getInventory().getItem(_index).setItemMeta(newMeta);
     }

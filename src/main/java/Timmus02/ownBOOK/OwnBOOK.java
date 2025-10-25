@@ -5,7 +5,7 @@ import Timmus02.ownBOOK.commands.updateBook;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class OwnBOOK extends JavaPlugin {
-    createBook createBook = new createBook();
+    createBook createBook = new createBook(); //creating Objekts for Command Handling
     updateBook updateBook = new updateBook();
     @Override
     public void onEnable() {
