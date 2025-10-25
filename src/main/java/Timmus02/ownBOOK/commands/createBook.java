@@ -12,9 +12,13 @@ import org.bukkit.inventory.meta.WritableBookMeta;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 public class createBook {
-    public void createBookForPlayer(Player _player, String _titel) {
+    public void createBookForPlayer(Player _player, String _titel, String _playerName) {
+        if(_playerName != null) {
+            _player = Bukkit.getPlayer(_playerName);
+        }
         ItemStack book = new ItemStack(Material.WRITTEN_BOOK);
         if (getBookMeta(_titel) != null) {
             book.setItemMeta(getBookMeta(_titel));

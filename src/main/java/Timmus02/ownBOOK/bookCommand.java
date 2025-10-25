@@ -28,11 +28,11 @@ public class bookCommand implements CommandExecutor, TabCompleter {
         if(args.length == 2) {
             if(args[0].equalsIgnoreCase("create")){
                 player.sendMessage("Started Creation of Book");
-                OwnBOOK.getInstance().getCreateBook().createBookForPlayer(player, args[1]);
+                OwnBOOK.getInstance().getCreateBook().createBookForPlayer(player, args[1], null);
                 return true;
             }
             if(args[0].equalsIgnoreCase("update")) {
-                OwnBOOK.getInstance().getUpdateBook().updateBookPlayer(player, args[1]);
+                OwnBOOK.getInstance().getUpdateBook().updateBookPlayer(player, args[1], null);
                 return true;
             }
             if(args[0].equalsIgnoreCase("getWritableBook")) {
@@ -48,6 +48,16 @@ public class bookCommand implements CommandExecutor, TabCompleter {
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
+                return true;
+            }
+            if(args[0].equalsIgnoreCase("create")) {
+                player.sendMessage("Started Creation of Book for Player " + args[2]);
+                OwnBOOK.getInstance().getCreateBook().createBookForPlayer(player, args[1], args[2]);
+                return true;
+            }
+            if(args[0].equalsIgnoreCase("update")) {
+                player.sendMessage("Started Updating of Book for Player " + args[2]);
+                OwnBOOK.getInstance().getUpdateBook().updateBookPlayer(player, args[1], args[2]);
                 return true;
             }
         }
@@ -75,11 +85,20 @@ public class bookCommand implements CommandExecutor, TabCompleter {
         }
         if (args.length == 3) {
             if(args[0].equalsIgnoreCase("create")) {
-                List<Player> list = (List<Player>) Bukkit.getOnlinePlayers();
-                Bukkit.getLogger().info(list +"");
-
+               return getPlayerNames();
+            }
+            if(args[0].equalsIgnoreCase("update")) {
+                return getPlayerNames();
             }
         }
         return Arrays.asList();
+    }
+    private List<String> getPlayerNames() {
+        List<Player> list = (List<Player>) Bukkit.getOnlinePlayers();
+        List<String> Players = new ArrayList<>();
+        for (int i = 0; i < list.size(); i++ ) {
+            Players.add(list.get(i).getName());
+        }
+        return Players;
     }
 }

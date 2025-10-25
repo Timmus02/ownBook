@@ -1,6 +1,7 @@
 package Timmus02.ownBOOK.commands;
 
 import Timmus02.ownBOOK.OwnBOOK;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -10,7 +11,10 @@ import org.bukkit.inventory.meta.BookMeta;
 import java.util.ArrayList;
 
 public class updateBook {
-    public void updateBookPlayer(Player _player, String _bookTitle) {
+    public void updateBookPlayer(Player _player, String _bookTitle, String _playerName) {
+        if (_playerName != null) {
+            _player =  Bukkit.getPlayer(_playerName);
+        }
         PlayerInventory inventory = _player.getInventory();
         boolean foundBook = false;
         ArrayList<Integer> indexes = new ArrayList<Integer>();
