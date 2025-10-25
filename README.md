@@ -78,17 +78,40 @@ books:
 Since Minecrafe 1.21.5 Colors and other Functionalitys are implentet over Compoents. It dosnt work with §!.
 For it to work just write your Book and save it. go to `plugins/ownBOOK/books.yml` and edit it with the right format.
 Further Information on Components under https://minecraft.wiki/w/Text_component_format
+Tools that help to generate the right Format https://misode.github.io/text-component --> you need to add ' at the beginning and end
 
 ### Example
 ```yaml
 books:
-  new:
-    author: new
-    title: new
+  commands:
+    author: admin
+    title: commands
     pages:
-    - '{text:"test", color:"red"}'
-    - '"test"'
+    - '[{text:"LightLevel", color:"blue", underlined:true},
+	{text:"\n/ll", color:"blue", underlined:false},
+	{text:" zeigt Lichtlevel on/off", color:"black", underlined:false}]'
+    - '[{text:"Minecraft Kommands", color:"blue", underlined:true},
+	{text:"\n/difficulty\n/effect", color:"blue", underlined:false},
+	{text:" bitte nur zum Minen nutzen\n", color:"black", 	underlined:false}, 
+	{text:"/tp\n/time", underlined:false}, 
+	{text:"set\n/weather", underlined:false}]'
+    - '[{text:"Simplehomes\n", color:"blue", underlined:true}, 
+	{text:"/sethome <name>\n", underlined:false},
+	{text:"/homelist", underlined:false}, 
+	{text:" Homliste\n", color:"black", underlined:false}, 
+	{text:"/delhome <name>", underlined:false},
+	{text:" Löschen\n", color:"black", underlined:false},
+	{text:"/home <name>", underlined:false}, 
+	{text:" tpet", color:"black", underlined:false}]'
+    - '"Measure"'
+    - '[{text:"Farming World\n", color:"blue", underlined:true},
+	{text:"/fw join -n:<fw/nether>", underlined:false},
+	{text:"beitreten fw=overworld\n", color:"black", underlined:false},
+	{text:"/fw leave", underlined:false},
+	{text:" verlassen", color:black, underlined:false}]'
+
 ```
-Generates red text on Page1
+Generates the following Page for Page 1 (first -)
+<img width="474" height="551" alt="image" src="https://github.com/user-attachments/assets/41890f17-3983-4982-9a58-a8e16cf1619a" />
 
 GENERATED WITH GitRead --> https://www.gitread.dev
