@@ -73,3 +73,5 @@ books:
 *   `author`: The author's name as a string.
 *   `title`: The display title of the book.
 *   `pages`: A list of strings, where each string is a page in the book.
+
+GENERATED WITH GirRead --> https://www.gitread.dev
