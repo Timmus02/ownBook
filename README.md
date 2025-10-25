@@ -74,4 +74,19 @@ books:
 *   `title`: The display title of the book.
 *   `pages`: A list of strings, where each string is a page in the book.
 
+##Since Version 2.0 --> Colors over Compoenents
+Since Minecrafe 1.21.5 Colors and other Functionalitys are implentet over Compoents. It dosnt work with §!.
+For it to work just write your Book and save it. go to `plugins/ownBOOK/books.yml` and edit it with the right format.
+Further Information on Components under https://minecraft.wiki/w/Text_component_format
+#Example
+```yaml
+books:
+  new:
+    author: new
+    title: new
+    pages:
+    - '{text:"test", color:"red"}'
+    - '"test"'
+```
+Generates red text on Page1
 GENERATED WITH GitRead --> https://www.gitread.dev
