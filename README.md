@@ -14,7 +14,7 @@ ownBook is a simple yet powerful Bukkit plugin for Minecraft servers that allows
 
 ## Installation
 
-1.  Download the latest `.jar` file.
+1.  Download the latest `.jar` file. --> build/libs
 2.  Place the `ownBook.jar` file into the `/plugins` directory of your Bukkit/Spigot/Paper server.
 3.  Restart or reload your server. The plugin will create a `plugins/ownBOOK/` directory.
 
@@ -74,4 +74,4 @@ books:
 *   `title`: The display title of the book.
 *   `pages`: A list of strings, where each string is a page in the book.
 
-GENERATED WITH GirRead --> https://www.gitread.dev
+GENERATED WITH GitRead --> https://www.gitread.dev
