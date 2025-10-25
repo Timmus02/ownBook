@@ -1,5 +1,10 @@
 package Timmus02.ownBOOK.commands;
 
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.ComponentLike;
+import net.kyori.adventure.text.format.Style;
+import net.kyori.adventure.text.format.TextColor;
+import net.kyori.adventure.text.serializer.gson.GsonComponentSerializer;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -8,11 +13,18 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BookMeta;
 import org.bukkit.inventory.meta.WritableBookMeta;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Unmodifiable;
+import org.w3c.dom.Text;
 
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
+import static java.awt.Color.RED;
 
 public class createBook {
     public void createBookForPlayer(Player _player, String _titel, String _playerName) { //Handles the create Command
@@ -52,7 +64,10 @@ public class createBook {
                 BookMeta meta = (BookMeta) book.getItemMeta();
                 meta.setAuthor(author);
                 meta.setTitle(title);
-                meta.setPages(pages);
+                for (int i = 1;  i <= pages.size(); i++) {
+                    meta.addPages(GsonComponentSerializer.gson().deserialize(pages.get(i-1)));
+                }
+                //meta.setPages(pages);
                 return meta;
             } else {
                 return null;
@@ -72,9 +87,12 @@ public class createBook {
                 String path = "books." + _title.replace(" ", "_");
                 config.set(path + ".author", _author);
                 config.set(path + ".title", _title);
-                config.set(path + ".pages", meta.getPages()); //überschreibt alles mit neuem
+                List<String> pages = new ArrayList<>();
+                for (int i = 1; i <= meta.getPageCount(); i++) {
+                    pages.add(GsonComponentSerializer.gson().serialize( meta.page(i)));
+                }
+                config.set(path + ".pages", pages); //überschreibt alles mit neuem*/
                 config.save(file);
-
                 _player.sendMessage(ChatColor.GREEN + "Book Saved!");
             }
             else {
